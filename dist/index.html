@@ -1,0 +1,31 @@
+<header>
+</header>
+
+<script src="script.js"></script>
+<body>
+  <style>
+    body {
+        font-family: 'system-ui';
+        color: white;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .body {
+        background-color: rgba(255, 255, 255, 0);
+    }
+  </style>
+    <div style="padding: 10px;">
+        <h1>Timer</h1>
+        <h2 id="clock">Uninitialsed</h2>
+
+        <div id="settings">
+            <input id="durationSlider" 
+            class="slider" 
+            type="range" min="1" max="100" value="25"
+            onmousemove="updateSliderText()">
+            <p id="durationText">25</p>
+        </div>
+        <button id="buttonStart" onclick="onButtonClicked()" class="button btn">Change</button>
+        <button id="buttonPause" onclick="onButtonPause()" class="btn">Pause</button>
+    </div>
+</body>
+
