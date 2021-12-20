@@ -1,23 +1,29 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 280,
+    // minWidth: 300,
+    // maxWidth: 500,
+    // minHeight: 155,
+    // maxHeight: 280,
+    fullscreenable: false,
     vibrancy: 'under-window',  // 'light', 'medium-light' etc
     visualEffectState: "active",
     titleBarStyle: 'hidden',
     transparent:   true,
     hasShadow:     true,
+    resizable: false,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: __dirname + '/src/preload.js'
     }
   })
-
+  mainWindow.setAlwaysOnTop('true');
   // and load the index.html of the app.
-  mainWindow.loadFile('dist/index.html')
+  mainWindow.loadFile('src/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -28,12 +34,20 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-
+  console.log(__dirname + 'src/preload.js')
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+})
+
+ipcMain.on('resize-window',(event,arg) => {
+  BrowserWindow.getAllWindows()[0].setSize(300,155,true);
+})
+
+ipcMain.on('restore-window',(event,arg) => {
+  BrowserWindow.getAllWindows()[0].setSize(400,280,true);
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

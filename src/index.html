@@ -1,0 +1,64 @@
+<header>
+</header>
+
+<script src="script.js"></script>
+<body>
+  <style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    body {
+        
+        font-family: 'system-ui';
+        color: white;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .timer {
+        -webkit-app-region: drag;
+        font-size: 100px;
+        font-weight: 100;
+        text-align: center;
+        margin: auto;
+    }
+    .body {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .btn {
+        background-color: rgba(10,10,10,0.1);
+        border-radius: 10px;
+        padding: 15px;
+        border-width: 0em;
+        font-family: 'system-ui';
+        color: white;
+        font-size: 15px;
+    }
+    .slider {
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        display: grid;
+    }
+    .btn :hover {
+        background-color: rgba(10,10,10,0.2);
+    }
+    div {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+  </style>
+    <div id="mainframe" style="padding: 10px;">
+        <h2 id="clock" class="timer">25:00</h2>
+        <p></p>
+        <div id="settingsDiv">
+            <input id="durationSlider" 
+            class="slider" 
+            type="range" min="1" max="100" value="25"
+            onmousemove="updateSliderText()">    
+        </div>
+        <div>
+            <button id="buttonStart" onclick="onButtonClicked()" class="btn">Start</button>
+            <button id="buttonPause" onclick="onButtonPause()" class="btn">Pause</button>
+        </div>
+    </div>
+</body>
+
